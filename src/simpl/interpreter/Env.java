@@ -15,10 +15,13 @@ public class Env {
     }
 
     public static Env empty = new Env() {
+
+        @Override
         public Value get(Symbol y) {
             return null;
         }
 
+        @Override
         public Env clone() {
             return this;
         }
@@ -31,10 +34,13 @@ public class Env {
     }
 
     public Value get(Symbol y) {
-        // TODO
-        return null;
+        if (x == y)
+            return v;
+        else
+            return E.get(y);
     }
 
+    @Override
     public Env clone() {
         // TODO
         return null;

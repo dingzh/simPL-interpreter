@@ -1,5 +1,9 @@
 package simpl.interpreter;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+import java.util.prefs.BackingStoreException;
+
 public class BoolValue extends Value {
 
     public final boolean b;
@@ -14,7 +18,8 @@ public class BoolValue extends Value {
 
     @Override
     public boolean equals(Object other) {
-        // TODO
+        if (other instanceof BoolValue)
+            return this.b == ((BoolValue) other).b;
         return false;
     }
 }

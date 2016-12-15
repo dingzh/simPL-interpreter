@@ -16,7 +16,14 @@ public class InitialState extends State {
     }
 
     private static Env initialEnv(Env E) {
-        // TODO
-        return null;
+
+        Env fstEnv = new Env(E, symbol("fst"), new fst());
+        Env sndEnv = new Env(fstEnv, symbol("snd"), new snd());
+        Env hdEnv = new Env(sndEnv, symbol("hd"), new hd());
+        Env tlEnv = new Env(hdEnv, symbol("tl"), new tl());
+        Env succEnv = new Env(tlEnv, symbol("succ"), new succ());
+        Env iszeroEnv = new Env(succEnv, symbol("iszero"), new iszero());
+        Env predEnv = new Env(iszeroEnv, symbol("pred"), new pred());
+        return predEnv;
     }
 }
