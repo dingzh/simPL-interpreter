@@ -1,7 +1,9 @@
 bin/
+.idea/
 *.class
 .DS_Store
 *.log
 *.aux
 *.synctex.gz
 .settings/
+simPL-interpreter.iml
