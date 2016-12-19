@@ -7,3 +7,4 @@ bin/
 *.synctex.gz
 .settings/
 simPL-interpreter.iml
+out/
