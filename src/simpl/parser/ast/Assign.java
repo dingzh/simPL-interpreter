@@ -4,12 +4,7 @@ import simpl.interpreter.RefValue;
 import simpl.interpreter.RuntimeError;
 import simpl.interpreter.State;
 import simpl.interpreter.Value;
-import simpl.typing.RefType;
-import simpl.typing.Substitution;
-import simpl.typing.Type;
-import simpl.typing.TypeEnv;
-import simpl.typing.TypeError;
-import simpl.typing.TypeResult;
+import simpl.typing.*;
 
 public class Assign extends BinaryExpr {
 
@@ -23,13 +18,20 @@ public class Assign extends BinaryExpr {
 
     @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+
+        TypeResult lr = l.typecheck(E);
+        TypeResult rr = r.typecheck(E);
+        Substitution sub = rr.s.compose(lr.s);
+        sub = sub.compose(lr.t.unify(new RefType(rr.t)));
+        return TypeResult.of(sub, Type.UNIT);
     }
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+
+        RefValue lv = (RefValue) l.eval(s);
+        Value rv = r.eval(s);
+        s.M.put(lv.p, rv);
+        return Value.UNIT;
     }
 }

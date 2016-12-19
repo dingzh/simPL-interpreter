@@ -15,4 +15,5 @@ public class Int {
     public void set(int n) {
         this.n = n;
     }
+
 }

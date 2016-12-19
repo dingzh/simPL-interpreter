@@ -17,7 +17,12 @@ public class Div extends ArithExpr {
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+
+        IntValue lv = (IntValue) l.eval(s);
+        IntValue rv = (IntValue) r.eval(s);
+        if (rv.n == 0)
+            throw new RuntimeError("DivedeByZero");
+        else
+            return new IntValue(lv.n/rv.n);
     }
 }

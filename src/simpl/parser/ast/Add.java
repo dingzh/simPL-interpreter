@@ -17,7 +17,9 @@ public class Add extends ArithExpr {
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+
+        IntValue lv = (IntValue) l.eval(s);
+        IntValue rv = (IntValue) r.eval(s);
+        return new IntValue(lv.n + rv.n);
     }
 }

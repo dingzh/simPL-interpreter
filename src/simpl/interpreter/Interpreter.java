@@ -1,6 +1,7 @@
 package simpl.interpreter;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import simpl.parser.Parser;
@@ -28,6 +29,9 @@ public class Interpreter {
         catch (RuntimeError e) {
             System.out.println("runtime error");
         }
+        catch (FileNotFoundException e) {
+            System.out.println("file not fund");
+        }
         catch (Exception e) {
             e.printStackTrace(System.err);
         }
@@ -52,7 +56,7 @@ public class Interpreter {
         interpret("doc/examples/pcf.minus.spl");
         interpret("doc/examples/pcf.factorial.spl");
         interpret("doc/examples/pcf.fibonacci.spl");
-        // interpret("doc/examples/pcf.twice.spl");
-        // interpret("doc/examples/pcf.lists.spl");
+        interpret("doc/examples/pcf.twice.spl");
+        interpret("doc/examples/pcf.lists.spl");
     }
 }

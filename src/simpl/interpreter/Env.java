@@ -34,7 +34,7 @@ public class Env {
     }
 
     public Value get(Symbol y) {
-        if (x == y)
+        if (x.equals(y))
             return v;
         else
             return E.get(y);
@@ -42,7 +42,7 @@ public class Env {
 
     @Override
     public Env clone() {
-        // TODO
-        return null;
+
+        return new Env(E.clone(), x, v);
     }
 }

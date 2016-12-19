@@ -12,20 +12,24 @@ final class BoolType extends Type {
 
     @Override
     public Substitution unify(Type t) throws TypeError {
-        // TODO
-        return null;
+
+        if (t instanceof TypeVar) {
+            return ((TypeVar) t).unify(this);
+        } else if (t instanceof BoolType) {
+            return Substitution.IDENTITY;
+        } else {
+            throw new TypeMismatchError();
+        }
     }
 
     @Override
     public boolean contains(TypeVar tv) {
-        // TODO
         return false;
     }
 
     @Override
     public Type replace(TypeVar a, Type t) {
-        // TODO
-        return null;
+        return Type.BOOL;
     }
 
     public String toString() {

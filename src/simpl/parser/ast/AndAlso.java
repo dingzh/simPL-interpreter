@@ -22,13 +22,20 @@ public class AndAlso extends BinaryExpr {
 
     @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+
+        TypeResult lr = l.typecheck(E);
+        TypeResult rr = r.typecheck(E);
+        Substitution s = rr.s.compose(lr.s);
+        s = s.compose(lr.t.unify(Type.BOOL));
+        s = s.compose(rr.t.unify(Type.BOOL));
+        return TypeResult.of(s,Type.BOOL);
     }
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+
+        BoolValue lv = (BoolValue) l.eval(s);
+        BoolValue rv = (BoolValue) r.eval(s);
+        return new BoolValue(lv.b && rv.b);
     }
 }

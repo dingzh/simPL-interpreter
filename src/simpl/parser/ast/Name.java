@@ -5,10 +5,8 @@ import simpl.interpreter.RuntimeError;
 import simpl.interpreter.State;
 import simpl.interpreter.Value;
 import simpl.parser.Symbol;
-import simpl.typing.Type;
-import simpl.typing.TypeEnv;
-import simpl.typing.TypeError;
-import simpl.typing.TypeResult;
+import simpl.typing.*;
+import sun.reflect.generics.tree.TypeSignature;
 
 public class Name extends Expr {
 
@@ -24,13 +22,24 @@ public class Name extends Expr {
 
     @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        Type t = E.get(x);
+        if (t == null)
+            throw new TypeError("Name");
+        else
+            return TypeResult.of(t);
     }
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+
+        Value v = s.E.get(x);
+        if (v instanceof RecValue) {
+            RecValue rv = (RecValue) v;
+            State rs = State.of(rv.E, s.M, s.p);
+            Rec rc = new Rec(rv.x, rv.e);
+            return rc.eval(rs);
+        } else {
+            return v;
+        }
     }
 }

@@ -28,13 +28,15 @@ public class Fn extends Expr {
 
     @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+
+        Type t = new TypeVar(true);
+        TypeResult r = e.typecheck(TypeEnv.of(E,x,t));
+        return TypeResult.of(r.s, new ArrowType(r.s.apply(t),r.t));
     }
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+
+        return new FunValue(s.E, x, e);
     }
 }

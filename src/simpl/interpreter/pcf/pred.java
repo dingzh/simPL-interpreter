@@ -7,7 +7,7 @@ import simpl.interpreter.RuntimeError;
 import simpl.interpreter.State;
 import simpl.interpreter.Value;
 import simpl.parser.Symbol;
-import simpl.parser.ast.Expr;
+import simpl.parser.ast.*;
 import simpl.typing.TypeEnv;
 import simpl.typing.TypeError;
 import simpl.typing.TypeResult;
@@ -15,7 +15,11 @@ import simpl.typing.TypeResult;
 public class pred extends FunValue {
 
     public pred() {
-        // TODO
-        super(null, null, null);
+        super(Env.empty, Symbol.symbol("predx"), new Cond(null, null,null));
+        ((Cond) e).e1 = new Greater(new Name(x),new IntegerLiteral(0));
+        ((Cond) e).e2 = new Sub(new Name(x),new IntegerLiteral(1));
+        ((Cond) e).e3 = new IntegerLiteral(0);
     }
+
+
 }
