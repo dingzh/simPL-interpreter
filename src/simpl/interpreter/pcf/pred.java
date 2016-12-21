@@ -20,6 +20,4 @@ public class pred extends FunValue {
         ((Cond) e).e2 = new Sub(new Name(x),new IntegerLiteral(1));
         ((Cond) e).e3 = new IntegerLiteral(0);
     }
-
-
 }

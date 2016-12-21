@@ -12,7 +12,14 @@ public class ConsValue extends Value {
     }
 
     public String toString() {
-        return "(" + v1 + "::" + v2 + ")";
+        return "list@" + this.getLength();
+    }
+
+    public int getLength() {
+        if (v2 instanceof ConsValue)
+            return ((ConsValue) v2).getLength() + 1;
+        else
+            return 1;
     }
 
     @Override

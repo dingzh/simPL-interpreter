@@ -29,9 +29,6 @@ public class Interpreter {
         catch (RuntimeError e) {
             System.out.println("runtime error");
         }
-        catch (FileNotFoundException e) {
-            System.out.println("file not fund");
-        }
         catch (Exception e) {
             e.printStackTrace(System.err);
         }
@@ -44,19 +41,20 @@ public class Interpreter {
     }
 
     public static void main(String[] args) {
-        interpret("doc/examples/plus.spl");
-        interpret("doc/examples/factorial.spl");
-        interpret("doc/examples/gcd1.spl");
-        interpret("doc/examples/gcd2.spl");
-        interpret("doc/examples/max.spl");
-        interpret("doc/examples/sum.spl");
-        interpret("doc/examples/map.spl");
-        interpret("doc/examples/pcf.sum.spl");
-        interpret("doc/examples/pcf.even.spl");
-        interpret("doc/examples/pcf.minus.spl");
-        interpret("doc/examples/pcf.factorial.spl");
-        interpret("doc/examples/pcf.fibonacci.spl");
-        interpret("doc/examples/pcf.twice.spl");
-        interpret("doc/examples/pcf.lists.spl");
+        interpret(args[0]);
+        //interpret("doc/examples/plus.spl");
+        //interpret("doc/examples/factorial.spl");
+        //interpret("doc/examples/gcd1.spl");
+        //interpret("doc/examples/gcd2.spl");
+        //interpret("doc/examples/max.spl");
+        //interpret("doc/examples/sum.spl");
+        //interpret("doc/examples/map.spl");
+        //interpret("doc/examples/pcf.sum.spl");
+        //interpret("doc/examples/pcf.even.spl");
+        //interpret("doc/examples/pcf.minus.spl");
+        //interpret("doc/examples/pcf.factorial.spl");
+        //interpret("doc/examples/pcf.fibonacci.spl");
+        //interpret("doc/examples/pcf.twice.spl");
+        //interpret("doc/examples/pcf.lists.spl");
     }
 }

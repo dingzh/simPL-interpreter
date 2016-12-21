@@ -21,6 +21,5 @@ public class succ extends FunValue {
         super(Env.empty, Symbol.symbol("succx"), new Add(null, null));
         ((Add) e).l = new Name(x);
         ((Add) e).r = new IntegerLiteral(1);
-
     }
 }

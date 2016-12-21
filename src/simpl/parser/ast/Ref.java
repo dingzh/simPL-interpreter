@@ -30,8 +30,9 @@ public class Ref extends UnaryExpr {
     public Value eval(State s) throws RuntimeError {
 
         int p = s.p.get();
-        s.M.put(p, e.eval(s));
+        Value v = e.eval(s);
+        s.M.put(p, v);
         s.p.set(p + 1);
-        return new RefValue(p);
+        return new RefValue(p, v);
     }
 }
